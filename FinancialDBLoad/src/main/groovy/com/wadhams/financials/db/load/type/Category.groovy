@@ -1,7 +1,7 @@
 package com.wadhams.financials.db.load.type
 
 enum Category {
-	License('LICENSE','LICENSE'),
+	DriversLicense('DRIVERS_LICENSE','DRIVERS_LICENSE'),
 	Membership('MEMBERSHIP','MEMBERSHIP'),
 	Purchase('PURCHASE','PURCHASE'),
 	Income('INCOME','INCOME'),
