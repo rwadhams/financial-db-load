@@ -11,6 +11,8 @@ class FinancialDBLoadApp {
 
 		if (args.size() == 1) {
 			Run run = Run.findByName(args[0])
+			println "Run parameter: $run" 
+			println ''
 			if (run == Run.DML) {
 				InsertBuilderService service = new InsertBuilderService()
 				service.build()

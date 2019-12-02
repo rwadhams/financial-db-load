@@ -11,6 +11,8 @@ targetCompatibility = 1.8
 dependencies {
 	compile 'org.codehaus.groovy:groovy-all:2.4.5' // if this version is changed, be mindful to update the Spock framework dependency also
 
+	compile 'com.h2database:h2:1.4.199'
+	
 	compile 'org.apache.logging.log4j:log4j-api:2.5'
 	compile 'org.apache.logging.log4j:log4j-core:2.5'
 

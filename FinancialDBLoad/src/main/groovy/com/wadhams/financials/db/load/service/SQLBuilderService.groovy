@@ -19,7 +19,8 @@ class SQLBuilderService {
 
 		sb.append("${dto.amount.toString()}, ")
 		
-		sb.append("'${dto.payee}', ")
+		String p = dto.payee.replace('\'', '')
+		sb.append("'$p', ")
 		
 		//description
 		if (dto.description) {
@@ -70,6 +71,14 @@ class SQLBuilderService {
 		}
 		
 		sb.append(')')
+		
+		return sb.toString()
+	}
+	
+	String buildDeleteAll() {
+		StringBuilder sb = new StringBuilder()
+		
+		sb.append('DELETE FROM FINANCIAL')
 		
 		return sb.toString()
 	}

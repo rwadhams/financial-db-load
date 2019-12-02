@@ -10,8 +10,8 @@ import groovy.transform.ToString
 class FinancialDTO {
 	Date transactionDate
 	BigDecimal amount
-	String description
 	String payee
+	String description
 	
 	Asset asset
 	Category category
