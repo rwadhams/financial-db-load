@@ -24,8 +24,6 @@ class FinancialDBLoadApp {
 			else {
 				println 'Unknown parameter. Application did not run.'
 			}
-			InsertBuilderService service = new InsertBuilderService()
-			service.build()
 		}
 		else {
 			println 'Missing parameter(s). Application did not run.'

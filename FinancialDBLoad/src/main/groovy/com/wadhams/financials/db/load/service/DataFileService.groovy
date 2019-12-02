@@ -42,7 +42,7 @@ class DataFileService {
 			Category c = Category.findByName(xml.cat.text())
 			dto.category = c
 			
-			//Category type
+			//SubCategory type
 			SubCategory sc = SubCategory.findByName(xml.subcat.text())
 			dto.subCategory = sc
 			
