@@ -1,7 +1,7 @@
 package com.wadhams.financials.db.load.app
 
 import com.wadhams.financials.db.load.dto.FinancialDTO
-import com.wadhams.financials.db.load.service.DataBuilderService
+import com.wadhams.financials.db.load.service.InsertBuilderService
 
 class FinancialDBLoadApp {
 	static main(args) {
@@ -9,8 +9,8 @@ class FinancialDBLoadApp {
 		println ''
 
 		if (args.size() == 0 ) {
-			DataBuilderService builderService = new DataBuilderService()
-			builderService.buildAll()
+			InsertBuilderService service = new InsertBuilderService()
+			service.build()
 		}
 		else {
 			println 'Unknown parameter. Application did not run.'

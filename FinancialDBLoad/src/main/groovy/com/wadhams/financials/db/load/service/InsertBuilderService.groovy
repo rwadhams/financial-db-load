@@ -7,18 +7,20 @@ import com.wadhams.financials.db.load.type.Asset
 import com.wadhams.financials.db.load.type.Category
 import com.wadhams.financials.db.load.type.SubCategory
 
-class DataBuilderService {
+class InsertBuilderService {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
 	SimpleDateFormat db2date = new SimpleDateFormat("yyyy-MM-dd")
+	 
+	DataFileService dataFileService = new DataFileService()
 	
-	def buildAll() {
+	def build() {
 		File fout = new File("out/sql-inserts.txt")
 		fout.withPrintWriter {pw ->
 			File baseDir = new File('C:/Mongo/Financial_DB_Data')
 			baseDir.eachFileMatch(~/.*\.txt/) {f ->
 				println "${f.name}"
-				verify(f)
-				List<FinancialDTO> financialList = build(f)
+				dataFileService.verify(f)
+				List<FinancialDTO> financialList = dataFileService.buildList(f)
 				financialList.each {dto ->
 					println dto
 				}
@@ -97,61 +99,4 @@ class DataBuilderService {
 		return sb.toString()
 	}
 	
-	
-	List<FinancialDTO> build(File file) {
-		List<FinancialDTO> financialList = []
-
-		file.eachLine {line ->
-//			println line
-			def sa = line.split(/\|/)
-			
-			FinancialDTO dto = new FinancialDTO()
-			
-			//transactionDate
-			Date d = sdf.parse(sa[0])
-//			println d
-			dto.transactionDate = d
-			
-			//amount
-			BigDecimal bd = new BigDecimal(sa[1])
-//			println bd
-			dto.amount = bd
-			
-			dto.payee = sa[2].trim()
-			dto.description = sa[3].trim()
-
-			def xml= new XmlSlurper().parseText(sa[4])
-			
-			//Asset type
-			Asset a = Asset.findByName(xml.asset.text())
-			dto.asset = a
-			
-			//Category type
-			Category c = Category.findByName(xml.cat.text())
-			dto.category = c
-			
-			//Category type
-			SubCategory sc = SubCategory.findByName(xml.subcat.text())
-			dto.subCategory = sc
-			
-			//Duration
-			String start = xml.start.text()
-			String end = xml.end.text()
-			if (start && end) {
-				dto.startDate = sdf.parse(start)
-				dto.endDate = sdf.parse(end)
-			}
-			
-			//println dto			
-			financialList << dto
-		}
-
-		return financialList
-	}
-	
-	def verify(File dataFile) {
-		dataFile.eachLine {line ->
-			assert line.split(/\|/).size() == 5
-		}
-	}
 }
