@@ -4,6 +4,8 @@ enum Asset {
 	CampHill('CAMP_HILL','CAMP_HILL'),
 	Caravan('CARAVAN','CARAVAN'),
 	Vehicle('VEHICLE','VEHICLE'),
+	Rob('ROB','ROB'),
+	Molly('MOLLY','MOLLY'),
 	Family('FAMILY','FAMILY'),
 	Unknown('Unknown','Unknown');
 	

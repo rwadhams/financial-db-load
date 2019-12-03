@@ -2,6 +2,7 @@ package com.wadhams.financials.db.load.dto
 
 import com.wadhams.financials.db.load.type.Asset
 import com.wadhams.financials.db.load.type.Category
+import com.wadhams.financials.db.load.type.ReportGrouping
 import com.wadhams.financials.db.load.type.SubCategory
 
 import groovy.transform.ToString
@@ -18,4 +19,7 @@ class FinancialDTO {
 	SubCategory subCategory
 	Date startDate
 	Date endDate
+	ReportGrouping rg1
+	ReportGrouping rg2
+	ReportGrouping rg3
 }

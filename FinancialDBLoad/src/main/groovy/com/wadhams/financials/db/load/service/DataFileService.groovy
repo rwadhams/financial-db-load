@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 import com.wadhams.financials.db.load.dto.FinancialDTO
 import com.wadhams.financials.db.load.type.Asset
 import com.wadhams.financials.db.load.type.Category
+import com.wadhams.financials.db.load.type.ReportGrouping
 import com.wadhams.financials.db.load.type.SubCategory
 
 class DataFileService {
@@ -53,6 +54,18 @@ class DataFileService {
 				dto.startDate = sdf.parse(start)
 				dto.endDate = sdf.parse(end)
 			}
+			
+			//Reporting Group type (1)
+			ReportGrouping rg1 = ReportGrouping.findByName(xml.rg1.text())
+			dto.rg1 = rg1
+			
+			//Reporting Group type (2)
+			ReportGrouping rg2 = ReportGrouping.findByName(xml.rg2.text())
+			dto.rg2 = rg2
+			
+			//Reporting Group type (3)
+			ReportGrouping rg3 = ReportGrouping.findByName(xml.rg3.text())
+			dto.rg3 = rg3
 			
 			//println dto			
 			financialList << dto
