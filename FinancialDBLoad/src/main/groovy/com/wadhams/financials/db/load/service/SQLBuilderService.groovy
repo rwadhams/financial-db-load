@@ -25,7 +25,8 @@ class SQLBuilderService {
 		
 		//description
 		if (dto.description) {
-			sb.append("'${dto.description}', ")
+			String d = dto.description.replace('\'', '')
+			sb.append("'$d', ")
 		}
 		else {
 			sb.append('null, ')

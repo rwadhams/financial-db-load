@@ -6,6 +6,9 @@ enum SubCategory {
 	Deposit('DEPOSIT','DEPOSIT'),			//PURCHASE
 	Services('SERVICES','SERVICES'),		//Paid work and materials
 	RACQ('RACQ','RACQ'),					//Provider
+	Gas('GAS','GAS'),						//UTILITIES
+	Electric('ELECTRIC','ELECTRIC'),		//UTILITIES
+	Water('WATER','WATER'),					//UTILITIES
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<SubCategory> allEnums = EnumSet.allOf(SubCategory.class)
