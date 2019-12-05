@@ -4,7 +4,7 @@ enum Category {
 	Alcohol('ALCOHOL','ALCOHOL'),
 	Bath('BATH','BATH'),
 	CarInsurance('CAR_INSURANCE','CAR_INSURANCE'),
-	CarService('CAR_SERVICE','CAR_SERVICE'),
+	CarServicing('CAR_SERVICING','CAR_SERVICING'),
 	CaravanInsurance('CARAVAN_INSURANCE','CARAVAN_INSURANCE'),
 	Cash('CASH','CASH'),
 	Clothing('CLOTHING','CLOTHING'),
