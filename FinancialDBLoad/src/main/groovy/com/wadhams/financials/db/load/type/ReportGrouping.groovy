@@ -3,6 +3,9 @@ package com.wadhams.financials.db.load.type
 enum ReportGrouping {
 	SpecificRunningCost('SPECIFIC_RUNNING_COST','SPECIFIC_RUNNING_COST'),	//specific
 	OngoingRunningCost('ONGOING_RUNNING_COST','ONGOING_RUNNING_COST'),		//start and end dates are consecutive and don't overlap
+	
+	FraserIsland('FRASER_ISLAND','FRASER_ISLAND'),		//grouping for location-specific expenses
+	
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<ReportGrouping> allEnums = EnumSet.allOf(ReportGrouping.class)
