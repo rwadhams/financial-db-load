@@ -20,10 +20,9 @@ class DBRefreshService {
 		//TODO purge financials from database
 		sql.execute sqlBuilderService.buildDeleteAll()
 			
-		File baseDir = new File('C:/Mongo/Financial_DB_Data')
+		File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
 		baseDir.eachFileMatch(~/.*\.txt/) {f ->
 			println "${f.name}"
-			dataFileService.verify(f)
 			List<FinancialDTO> financialList = dataFileService.buildList(f)
 			financialList.each {dto ->
 				println dto

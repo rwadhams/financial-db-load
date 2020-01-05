@@ -15,26 +15,25 @@ class DataFileService {
 		List<FinancialDTO> financialList = []
 
 		file.eachLine {line ->
-//			println line
-			def sa = line.split(/\|/)
+			println line
+			def xml= new XmlSlurper().parseText(line)
 			
 			FinancialDTO dto = new FinancialDTO()
 			
 			//transactionDate
-			Date d = sdf.parse(sa[0])
+			Date d = sdf.parse(xml.dt.text())
 //			println d
 			dto.transactionDate = d
 			
 			//amount
-			BigDecimal bd = new BigDecimal(sa[1])
+			BigDecimal bd = new BigDecimal(xml.amt.text())
 //			println bd
 			dto.amount = bd
 			
-			dto.payee = sa[2].trim()
-			dto.description = sa[3].trim()
-
-			def xml= new XmlSlurper().parseText(sa[4])
+			dto.payee = xml.payee.text().trim()
 			
+			dto.description = xml.desc.text().trim()
+
 			//Asset type
 			Asset a = Asset.findByName(xml.asset.text())
 			dto.asset = a
@@ -72,11 +71,5 @@ class DataFileService {
 		}
 
 		return financialList
-	}
-	
-	def verify(File dataFile) {
-		dataFile.eachLine {line ->
-			assert line.split(/\|/).size() == 5
-		}
 	}
 }
