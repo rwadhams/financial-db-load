@@ -5,10 +5,10 @@ enum SubCategory {
 	StampDuty('STAMP_DUTY','STAMP_DUTY'),	//PURCHASE
 	Deposit('DEPOSIT','DEPOSIT'),			//PURCHASE
 	Services('SERVICES','SERVICES'),		//Paid work and materials
-	Camping('CAMPING','CAMPING'),			//EQUIPMENT, SUPPLIES
-	FourWheelDriving('4WD','4WD'),			//EQUIPMENT
-	Caravan('CARAVAN','CARAVAN'),			//EQUIPMENT, SUPPLIES
-	Vehicle('VEHICLE','VEHICLE'),			//EQUIPMENT, SUPPLIES
+	Camping('CAMPING','CAMPING'),			//EQUIPMENT, CAMPING
+	FourWheelDriving('4WD','4WD'),			//EQUIPMENT, 4WD
+	Caravan('CARAVAN','CARAVAN'),			//EQUIPMENT, CARAVAN
+	Vehicle('VEHICLE','VEHICLE'),			//EQUIPMENT, VEHICLE
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<SubCategory> allEnums = EnumSet.allOf(SubCategory.class)
