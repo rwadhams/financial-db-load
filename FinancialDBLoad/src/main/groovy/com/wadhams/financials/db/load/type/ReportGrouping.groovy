@@ -6,6 +6,8 @@ enum ReportGrouping {
 	
 	FraserIsland('FRASER_ISLAND','FRASER_ISLAND'),		//grouping for location-specific expenses
 	
+	CampHillReno('CAMP_HILL_RENO','CAMP_HILL_RENO'),	//grouping for specific expenses
+	
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<ReportGrouping> allEnums = EnumSet.allOf(ReportGrouping.class)
