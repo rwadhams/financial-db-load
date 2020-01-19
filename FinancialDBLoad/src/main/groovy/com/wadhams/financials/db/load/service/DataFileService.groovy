@@ -15,7 +15,7 @@ class DataFileService {
 		List<FinancialDTO> financialList = []
 
 		file.eachLine {line ->
-			println line
+			//println line
 			def xml= new XmlSlurper().parseText(line)
 			
 			FinancialDTO dto = new FinancialDTO()

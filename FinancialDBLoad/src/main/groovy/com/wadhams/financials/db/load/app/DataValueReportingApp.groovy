@@ -19,7 +19,6 @@ class DataValueReportingApp {
 		
 		pw.close()
 		
-		println ''
 		println 'DataValueReportingApp ended.'
 	}
 }

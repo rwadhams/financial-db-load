@@ -17,7 +17,7 @@ class DBRefreshService {
 	def refresh() {
 		Sql sql = Sql.newInstance('jdbc:h2:~/financial', 'sa', '', 'org.h2.Driver')
 		
-		//TODO purge financials from database
+		//purge financials from database
 		sql.execute sqlBuilderService.buildDeleteAll()
 			
 		File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
@@ -29,7 +29,7 @@ class DBRefreshService {
 			}
 			println ''
 
-			//TODO insert financials into database			
+			//insert financials into database			
 			financialList.each {dto ->
 				sql.execute sqlBuilderService.buildInsert(dto)
 			}

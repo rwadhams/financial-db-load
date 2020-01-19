@@ -34,11 +34,11 @@ class DataValueReportingService {
 		}
 		pw.println ''
 		
-		String assetQuery = sqlBuilderService.buildAssetSelect()
+		String assetQuery = sqlBuilderService.buildAssetSelectWithoutReportGrouping()
 		println assetQuery
 		println ''
-		pw.println 'Asset Category SubCategory'
-		pw.println '--------------------------'
+		pw.println 'Asset Category SubCategory (not part of report grouping)'
+		pw.println '--------------------------------------------------------'
 		sql.eachRow(assetQuery) {row ->
 			String c01 = row.PAYEE
 			String c02 = row.DESC

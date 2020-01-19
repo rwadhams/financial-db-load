@@ -130,7 +130,7 @@ class SQLBuilderService {
 		return sb.toString()
 	}
 	
-	String buildAssetSelect() {
+	String buildAssetSelectWithoutReportGrouping() {
 		StringBuilder sb = new StringBuilder()
 		
 		sb.append('SELECT PAYEE AS PAYEE, DESCRIPTION AS DESC, ASSET AS ASSET, CATEGORY AS CAT, SUB_CATEGORY AS SUBCAT ')
