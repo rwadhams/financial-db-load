@@ -23,7 +23,7 @@ class DBRefreshService {
 		File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
 		baseDir.eachFileMatch(~/.*\.txt/) {f ->
 			println "${f.name}"
-			List<FinancialDTO> financialList = dataFileService.buildList(f)
+			List<FinancialDTO> financialList = dataFileService.buildFinancialDTOList(f)
 			financialList.each {dto ->
 				println dto
 			}

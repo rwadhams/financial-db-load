@@ -1,37 +1,51 @@
 package com.wadhams.financials.db.load.app
 
+import com.wadhams.financials.db.load.dto.SuncorpDTO
+import com.wadhams.financials.db.load.service.DataFileService
+
 class ConvertCSV2XMLApp {
+	DataFileService dataFileService = new DataFileService()
+	
 	static main(args) {
 		println 'ConvertCSV2XMLApp started...'
 		println ''
 
-		File baseDir = new File('C:/Mongo/Financial_DB_CSV_Data')
-		baseDir.eachFileMatch(~/.*\.csv/) {f ->
-			println "${f.name}"
-			f.eachLine {line ->
-				//println line
-				def sa = line.split(/,/)
-				assert sa.size() == 4
-
-				print '<data>'
-				
-				//transactionDate
-				print "<dt>${sa[0].substring(1,sa[0].size()-1)}</dt>"
-				
-				//amount
-				print "<amt>${sa[2].substring(1,sa[2].size()-1)}</amt>"
-				
-				print "<payee></payee>"
-				
-				//description
-				print "<desc>${sa[1].substring(1,sa[1].size()-1)}</desc>"
-				
-				println '<asset></asset><cat></cat><subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
-			}
-			println ''
-		}
+		ConvertCSV2XMLApp app = new ConvertCSV2XMLApp()
+		app.execute()
 		
 		println ''
 		println 'ConvertCSV2XMLApp ended.'
+	}
+	
+	def execute() {
+		File baseDir = new File('C:/Mongo/Financial_DB_CSV_Data')
+		baseDir.eachFileMatch(~/.*\.csv/) {f ->
+			println "${f.name}"
+			List<SuncorpDTO> suncorpDTOList = dataFileService.buildSuncorpDTOList(f)
+			
+			File fout = new File("C:/Mongo/Financial_DB_CSV_Data/${f.name- '.csv' + '.xml'}")
+			PrintWriter pw = fout.newPrintWriter()
+			
+			suncorpDTOList.each {dto ->
+				pw.print '<data>'
+				
+				//transactionDate
+				pw.print "<dt>${dto.transactionDate}</dt>"
+				
+				//amount
+				pw.print "<amt>${dto.amount}</amt>"
+				
+				pw.print "<payee>${dto.description}</payee>"
+				
+				//description
+				pw.print "<desc>${dto.description}</desc>"
+				
+				pw.println '<asset></asset><cat></cat><subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
+			}
+			pw.close()
+			
+			println ''
+		}
+
 	}
 }

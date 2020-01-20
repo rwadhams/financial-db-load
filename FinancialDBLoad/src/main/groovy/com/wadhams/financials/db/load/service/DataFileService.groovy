@@ -1,8 +1,10 @@
 package com.wadhams.financials.db.load.service
 
 import java.text.SimpleDateFormat
-
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 import com.wadhams.financials.db.load.dto.FinancialDTO
+import com.wadhams.financials.db.load.dto.SuncorpDTO
 import com.wadhams.financials.db.load.type.Asset
 import com.wadhams.financials.db.load.type.Category
 import com.wadhams.financials.db.load.type.ReportGrouping
@@ -11,7 +13,7 @@ import com.wadhams.financials.db.load.type.SubCategory
 class DataFileService {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
 	
-	List<FinancialDTO> buildList(File file) {
+	List<FinancialDTO> buildFinancialDTOList(File file) {
 		List<FinancialDTO> financialList = []
 
 		file.eachLine {line ->
@@ -71,5 +73,56 @@ class DataFileService {
 		}
 
 		return financialList
+	}
+	
+	List<SuncorpDTO> buildSuncorpDTOList(File file) {
+		Pattern visaPattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
+		Pattern wdlPattern = ~/EFTPOS WDL(.*)AU/
+		Pattern depPattern = ~/EFTPOS DEP(.*)AU/
+		
+		List<SuncorpDTO> suncorpList = []
+
+		file.eachLine {line ->
+			//println line
+			def sa = line.split(/,/)
+			assert sa.size() == 4
+			
+			SuncorpDTO dto = new SuncorpDTO()
+			
+			//transactionDate
+			dto.transactionDate = sa[0].substring(1,sa[0].size()-1)
+			
+			//amount
+			BigDecimal bd = new BigDecimal(sa[2].substring(1,sa[2].size()-1))
+			//println bd
+			dto.amount = bd
+			
+			String suncorpDescription = sa[1].substring(1,sa[1].size()-1)
+			String parsedDescription = ''
+			if (suncorpDescription.startsWith('VISA PURCHASE')) {
+				Matcher matcher = suncorpDescription =~ visaPattern
+				parsedDescription = matcher[0][1].trim()
+			}
+			else if (suncorpDescription.startsWith('EFTPOS WDL')) {
+				Matcher matcher = suncorpDescription =~ wdlPattern
+				parsedDescription = matcher[0][1].trim()
+			}
+			else if (suncorpDescription.startsWith('EFTPOS DEP')) {
+				Matcher matcher = suncorpDescription =~ depPattern
+				parsedDescription = matcher[0][1].trim()
+			}
+			else {
+				println "ZZZZZZZZZZZ Unparsed description: $suncorpDescription"
+				parsedDescription = suncorpDescription
+			}
+			//println parsedDescription
+			dto.description = parsedDescription
+			
+			//println dto
+			//println ''			
+			suncorpList << dto
+		}
+
+		return suncorpList
 	}
 }

@@ -20,7 +20,7 @@ class InsertBuilderService {
 			baseDir.eachFileMatch(~/.*\.txt/) {f ->
 				println "${f.name}"
 				dataFileService.verify(f)
-				List<FinancialDTO> financialList = dataFileService.buildList(f)
+				List<FinancialDTO> financialList = dataFileService.buildFinancialDTOList(f)
 				financialList.each {dto ->
 					println dto
 				}
