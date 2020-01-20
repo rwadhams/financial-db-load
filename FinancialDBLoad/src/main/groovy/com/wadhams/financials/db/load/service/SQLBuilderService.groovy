@@ -109,6 +109,17 @@ class SQLBuilderService {
 		return sb.toString()
 	}
 	
+	String buildDistinctPayeeSelect() {
+		StringBuilder sb = new StringBuilder()
+		
+		sb.append('SELECT PAYEE AS PAYEE, COUNT(PAYEE) AS COUNT ')
+		sb.append('FROM FINANCIAL ')
+		sb.append('GROUP BY PAYEE ')
+		sb.append('ORDER BY 2 DESC, 1')
+		
+		return sb.toString()
+	}
+	
 	String buildDistinctCategorySubCategorySelect() {
 		StringBuilder sb = new StringBuilder()
 		
