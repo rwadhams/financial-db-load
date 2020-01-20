@@ -1,5 +1,6 @@
 package com.wadhams.financials.db.load.service
 
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -76,44 +77,71 @@ class DataFileService {
 	}
 	
 	List<SuncorpDTO> buildSuncorpDTOList(File file) {
-		Pattern visaPattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
-		Pattern wdlPattern = ~/EFTPOS WDL(.*)AU/
-		Pattern depPattern = ~/EFTPOS DEP(.*)AU/
+		Pattern linePattern = ~/"(.*?)","(.*?)","(.*?)","(.*?)"/
+		
+		Pattern visaPurchasePattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
+		Pattern visaCreditPattern = ~/VISA CREDIT(.*)\d\d\/\d\d.*AUD/
+		Pattern wdlPattern  = ~/EFTPOS WDL(.*)AU/
+		Pattern depPattern  = ~/EFTPOS DEP(.*)AU/
+		Pattern bpayPattern = ~/BPAY DEBIT VIA INTERNET(.*)REFERENCE NUMBER.*/
+		
+		NumberFormat cf = NumberFormat.getCurrencyInstance()
+		NumberFormat nf = NumberFormat.getNumberInstance()
+		nf.setMaximumFractionDigits(2)
+		nf.setGroupingUsed(false)
 		
 		List<SuncorpDTO> suncorpList = []
 
 		file.eachLine {line ->
-			//println line
-			def sa = line.split(/,/)
-			assert sa.size() == 4
+			println line
+			Matcher lineMatcher = line =~ linePattern
+			String regexDate = lineMatcher[0][1]
+			String regexDesc = lineMatcher[0][2]
+			String regexAmt = lineMatcher[0][3]
 			
 			SuncorpDTO dto = new SuncorpDTO()
 			
 			//transactionDate
-			dto.transactionDate = sa[0].substring(1,sa[0].size()-1)
+			dto.transactionDate = regexDate
 			
 			//amount
-			BigDecimal bd = new BigDecimal(sa[2].substring(1,sa[2].size()-1))
+			Number number = cf.parse(regexAmt)
+			BigDecimal bd = new BigDecimal(nf.format(number)).negate()	//change sign
 			//println bd
 			dto.amount = bd
 			
-			String suncorpDescription = sa[1].substring(1,sa[1].size()-1)
+			Matcher descMatcher = null
+			String suncorpDescription = regexDesc
 			String parsedDescription = ''
 			if (suncorpDescription.startsWith('VISA PURCHASE')) {
-				Matcher matcher = suncorpDescription =~ visaPattern
-				parsedDescription = matcher[0][1].trim()
+				descMatcher = suncorpDescription =~ visaPurchasePattern
+				parsedDescription = descMatcher[0][1].trim()
 			}
 			else if (suncorpDescription.startsWith('EFTPOS WDL')) {
-				Matcher matcher = suncorpDescription =~ wdlPattern
-				parsedDescription = matcher[0][1].trim()
+				descMatcher = suncorpDescription =~ wdlPattern
+				parsedDescription = descMatcher[0][1].trim()
 			}
 			else if (suncorpDescription.startsWith('EFTPOS DEP')) {
-				Matcher matcher = suncorpDescription =~ depPattern
-				parsedDescription = matcher[0][1].trim()
+				descMatcher = suncorpDescription =~ depPattern
+				parsedDescription = descMatcher[0][1].trim()
+			}
+			else if (suncorpDescription.startsWith('VISA CREDIT')) {
+				descMatcher = suncorpDescription =~ visaCreditPattern
+				parsedDescription = descMatcher[0][1].trim()
+			}
+			else if (suncorpDescription.startsWith('BPAY DEBIT VIA INTERNET')) {
+				descMatcher = suncorpDescription =~ bpayPattern
+				parsedDescription = descMatcher[0][1].trim()
+			}
+			else if (suncorpDescription.startsWith('ATM WITHDRAWAL')) {
+				parsedDescription = suncorpDescription.trim()
+			}
+			else if (suncorpDescription.startsWith('INTERNET TRANSFER CREDIT')) {
+				return	//return from closure
 			}
 			else {
 				println "ZZZZZZZZZZZ Unparsed description: $suncorpDescription"
-				parsedDescription = suncorpDescription
+				parsedDescription = suncorpDescription.trim()
 			}
 			//println parsedDescription
 			dto.description = parsedDescription
