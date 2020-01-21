@@ -14,6 +14,7 @@ class DataValueReportingService {
 	def reportDistinctValues(PrintWriter pw) {
 		Sql sql = Sql.newInstance('jdbc:h2:~/financial', 'sa', '', 'org.h2.Driver')
 
+		//DistinctPayeeCountTwoPlus
 		String payeeCountTwoPlusQuery = sqlBuilderService.buildDistinctPayeeCountTwoPlus()
 		println payeeCountTwoPlusQuery
 		println ''
@@ -31,7 +32,7 @@ class DataValueReportingService {
 		pw.println ''
 		
 		
-		
+		//DistinctPayeeCountOne
 		String payeeCountOneQuery = sqlBuilderService.buildDistinctPayeeCountOne()
 		println payeeCountOneQuery
 		println ''
@@ -47,6 +48,8 @@ class DataValueReportingService {
 		multiColumnPrinting(payeeCountOneList, 12, pw)
 		pw.println ''
 		
+		
+		//DistinctCategorySubCategorySelect
 		String categorySubCategoryQuery = sqlBuilderService.buildDistinctCategorySubCategorySelect()
 		println categorySubCategoryQuery
 		println ''
@@ -67,6 +70,8 @@ class DataValueReportingService {
 		}
 		pw.println ''
 		
+		
+		//AssetSelectWithoutReportGrouping
 		String assetQuery = sqlBuilderService.buildAssetSelectWithoutReportGrouping()
 		println assetQuery
 		println ''
@@ -82,6 +87,8 @@ class DataValueReportingService {
 		}
 		pw.println ''
 
+		
+		//SpecificRunningCostSelect
 		String specificRunningCostQuery = sqlBuilderService.buildSpecificRunningCostSelect()
 		println specificRunningCostQuery
 		println ''
@@ -100,6 +107,8 @@ class DataValueReportingService {
 		}
 		pw.println ''
 
+		
+		//OngoingRunningCostSelect
 		String ongoingRunningCostQuery = sqlBuilderService.buildOngoingRunningCostSelect()
 		println ongoingRunningCostQuery
 		println ''
@@ -118,6 +127,8 @@ class DataValueReportingService {
 		}
 		pw.println ''
 
+		
+		//DistinctReportGrouping1Select
 		String reportGrouping1Query = sqlBuilderService.buildDistinctReportGrouping1Select()
 		println reportGrouping1Query
 		println ''
