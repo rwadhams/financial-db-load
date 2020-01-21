@@ -27,7 +27,7 @@ class DataValueReportingService {
 
 		pw.println 'Distinct Payee Values (Count > 1)'
 		pw.println '---------------------------------'
-		multiColumnPrinting(payeeCountTwoPlusList, 20, pw)
+		multiColumnPrinting(payeeCountTwoPlusList, 12, pw)
 		pw.println ''
 		
 		
@@ -44,7 +44,7 @@ class DataValueReportingService {
 		
 		pw.println 'Distinct Payee Values (Count = 1)'
 		pw.println '---------------------------------'
-		multiColumnPrinting(payeeCountOneList, 30, pw)
+		multiColumnPrinting(payeeCountOneList, 12, pw)
 		pw.println ''
 		
 		String categorySubCategoryQuery = sqlBuilderService.buildDistinctCategorySubCategorySelect()
