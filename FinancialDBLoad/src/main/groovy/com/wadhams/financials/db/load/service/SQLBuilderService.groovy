@@ -109,13 +109,26 @@ class SQLBuilderService {
 		return sb.toString()
 	}
 	
-	String buildDistinctPayeeSelect() {
+	String buildDistinctPayeeCountOne() {
+		StringBuilder sb = new StringBuilder()
+		
+		sb.append('SELECT PAYEE AS PAYEE ')
+		sb.append('FROM FINANCIAL ')
+		sb.append('GROUP BY PAYEE ')
+		sb.append('HAVING COUNT(PAYEE) = 1 ')
+		sb.append('ORDER BY 1')
+		
+		return sb.toString()
+	}
+	
+	String buildDistinctPayeeCountTwoPlus() {
 		StringBuilder sb = new StringBuilder()
 		
 		sb.append('SELECT PAYEE AS PAYEE, COUNT(PAYEE) AS COUNT ')
 		sb.append('FROM FINANCIAL ')
 		sb.append('GROUP BY PAYEE ')
-		sb.append('ORDER BY 2 DESC, 1')
+		sb.append('HAVING COUNT(PAYEE) > 1 ')
+		sb.append('ORDER BY 1')
 		
 		return sb.toString()
 	}

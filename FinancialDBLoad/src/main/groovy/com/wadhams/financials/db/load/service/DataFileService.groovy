@@ -87,6 +87,8 @@ class DataFileService {
 		
 		NumberFormat cf = NumberFormat.getCurrencyInstance()
 		NumberFormat nf = NumberFormat.getNumberInstance()
+		nf.setMinimumIntegerDigits(1)
+		nf.setMinimumFractionDigits(2)
 		nf.setMaximumFractionDigits(2)
 		nf.setGroupingUsed(false)
 		

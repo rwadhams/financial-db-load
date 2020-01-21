@@ -14,17 +14,37 @@ class DataValueReportingService {
 	def reportDistinctValues(PrintWriter pw) {
 		Sql sql = Sql.newInstance('jdbc:h2:~/financial', 'sa', '', 'org.h2.Driver')
 
-		String payeeQuery = sqlBuilderService.buildDistinctPayeeSelect()
-		println payeeQuery
+		String payeeCountTwoPlusQuery = sqlBuilderService.buildDistinctPayeeCountTwoPlus()
+		println payeeCountTwoPlusQuery
 		println ''
 		
-		pw.println 'Distinct Payee Values'
-		pw.println '---------------------'
-		sql.eachRow(payeeQuery) {row ->
+		List<String> payeeCountTwoPlusList = []
+		sql.eachRow(payeeCountTwoPlusQuery) {row ->
 			String c01 = row.COUNT
 			String c02 = row.PAYEE
-			pw.println "$c01\t$c02"
+			payeeCountTwoPlusList << "$c02 ($c01)".padRight(30)
 		}
+
+		pw.println 'Distinct Payee Values (Count > 1)'
+		pw.println '---------------------------------'
+		multiColumnPrinting(payeeCountTwoPlusList, 20, pw)
+		pw.println ''
+		
+		
+		
+		String payeeCountOneQuery = sqlBuilderService.buildDistinctPayeeCountOne()
+		println payeeCountOneQuery
+		println ''
+		
+		List<String> payeeCountOneList = []
+		sql.eachRow(payeeCountOneQuery) {row ->
+			String c01 = row.PAYEE
+			payeeCountOneList << "$c01".padRight(30)
+		}
+		
+		pw.println 'Distinct Payee Values (Count = 1)'
+		pw.println '---------------------------------'
+		multiColumnPrinting(payeeCountOneList, 30, pw)
 		pw.println ''
 		
 		String categorySubCategoryQuery = sqlBuilderService.buildDistinctCategorySubCategorySelect()
@@ -111,4 +131,20 @@ class DataValueReportingService {
 		
 	}
 	
+	def multiColumnPrinting(List<String> list, int height, PrintWriter pw) {
+		int total = list.size()
+		int prev = total / height
+		int columns = prev + 1
+		height.times {row ->
+			prev.times {col ->
+				pw.print "${list[col*height+row]}"
+			}
+			if (height*prev+row >= total) {
+				pw.println ''
+			}
+			else {
+				pw.println "${list[prev*height+row]}"
+			}
+		}
+	}
 }
