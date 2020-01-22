@@ -56,16 +56,14 @@ class DataValueReportingService {
 		
 		pw.println 'Distinct Category/SubCategory Values'
 		pw.println '------------------------------------'
-		String category = ''
 		sql.eachRow(categorySubCategoryQuery) {row ->
 			String c01 = row.CAT
 			String c02 = row.SUBCAT
-			if (category != c01) {
-				category = c01
+			if (!c02) {
 				pw.println c01
 			}
-			if (c02) {
-				pw.println "\t$c02"
+			else {
+				pw.println "$c01 / $c02"
 			}
 		}
 		pw.println ''
@@ -92,9 +90,7 @@ class DataValueReportingService {
 		String specificRunningCostQuery = sqlBuilderService.buildSpecificRunningCostSelect()
 		println specificRunningCostQuery
 		println ''
-		pw.println '<rg1>SPECIFIC_RUNNING_COST</rg1>'
-		println ''
-		pw.println 'Specific Running Costs (Asset|Category)'
+		pw.println "Specific Running Costs (Asset|Category)\t\t<rg1>SPECIFIC_RUNNING_COST</rg1>"
 		pw.println '---------------------------------------'
 		sql.eachRow(specificRunningCostQuery) {row ->
 			String c01 = row.PAYEE
@@ -112,9 +108,7 @@ class DataValueReportingService {
 		String ongoingRunningCostQuery = sqlBuilderService.buildOngoingRunningCostSelect()
 		println ongoingRunningCostQuery
 		println ''
-		pw.println '<rg1>ONGOING_RUNNING_COST</rg1>'
-		println ''
-		pw.println 'Ongoing Running Costs (Asset|Category)'
+		pw.println "Ongoing Running Costs (Asset|Category)\t\t<rg1>ONGOING_RUNNING_COST</rg1>"
 		pw.println '--------------------------------------'
 		sql.eachRow(ongoingRunningCostQuery) {row ->
 			String c01 = row.PAYEE
