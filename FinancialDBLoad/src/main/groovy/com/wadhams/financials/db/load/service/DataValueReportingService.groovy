@@ -54,18 +54,21 @@ class DataValueReportingService {
 		println categorySubCategoryQuery
 		println ''
 		
-		pw.println 'Distinct Category/SubCategory Values'
-		pw.println '------------------------------------'
+		List<String> catSubcatList = []
 		sql.eachRow(categorySubCategoryQuery) {row ->
 			String c01 = row.CAT
 			String c02 = row.SUBCAT
 			if (!c02) {
-				pw.println c01
+				catSubcatList << "$c01".padRight(30)
 			}
 			else {
-				pw.println "$c01 / $c02"
+				catSubcatList << "$c01 / $c02".padRight(30)
 			}
 		}
+		
+		pw.println 'Distinct Category/SubCategory Values'
+		pw.println '------------------------------------'
+		multiColumnPrinting(catSubcatList, 25, pw)
 		pw.println ''
 		
 		

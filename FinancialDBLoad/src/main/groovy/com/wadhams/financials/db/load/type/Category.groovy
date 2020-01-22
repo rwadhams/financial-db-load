@@ -41,6 +41,7 @@ enum Category {
 	Renovation('RENO','RENO'),
 	PreparedFood('PREPARED_FOOD','PREPARED_FOOD'),
 	Tax('TAX','TAX'),
+	Technology('TECHNOLOGY','TECHNOLOGY'),
 	Telstra('TELSTRA','TELSTRA'),
 	Tools('TOOLS','TOOLS'),
 	Travel('TRAVEL','TRAVEL'),
@@ -72,7 +73,7 @@ enum Category {
 		}
 		
 		println ''
-		println "ZZZZZZZZZZZZZZZ Unknown category text: $text"
+		println "ZZZZ Unknown category text: $text"
 		println ''
 		return Category.Unknown
 	}

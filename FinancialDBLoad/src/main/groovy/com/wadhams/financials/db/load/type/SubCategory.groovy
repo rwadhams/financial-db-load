@@ -4,7 +4,11 @@ enum SubCategory {
 	Payment('PAYMENT','PAYMENT'),			//PURCHASE
 	StampDuty('STAMP_DUTY','STAMP_DUTY'),	//PURCHASE
 	Deposit('DEPOSIT','DEPOSIT'),			//PURCHASE
+	
+	Brewery('BREWERY','BREWERY'),			//ENTERTAINMENT
+	
 	Services('SERVICES','SERVICES'),		//Paid work and materials
+	
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<SubCategory> allEnums = EnumSet.allOf(SubCategory.class)
@@ -31,7 +35,7 @@ enum SubCategory {
 		}
 		
 		println ''
-		println "ZZZZZZZZZZZZZZZ Unknown sub-category text: $text"
+		println "ZZZZ Unknown sub-category text: $text"
 		println ''
 		return SubCategory.Unknown
 	}
