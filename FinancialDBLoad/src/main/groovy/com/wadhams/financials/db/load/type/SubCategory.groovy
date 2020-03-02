@@ -4,6 +4,7 @@ enum SubCategory {
 	Payment('PAYMENT','PAYMENT'),			//PURCHASE
 	StampDuty('STAMP_DUTY','STAMP_DUTY'),	//PURCHASE
 	Deposit('DEPOSIT','DEPOSIT'),			//PURCHASE
+	Flights('FLIGHTS','FLIGHTS'),			//PURCHASE
 	
 	Brewery('BREWERY','BREWERY'),			//ENTERTAINMENT
 	

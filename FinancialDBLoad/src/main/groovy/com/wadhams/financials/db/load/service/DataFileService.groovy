@@ -84,6 +84,7 @@ class DataFileService {
 		Pattern wdlPattern  = ~/EFTPOS WDL(.*)AU/
 		Pattern depPattern  = ~/EFTPOS DEP(.*)AU/
 		Pattern bpayPattern = ~/BPAY DEBIT VIA INTERNET(.*)REFERENCE NUMBER.*/
+		Pattern ddPattern  = ~/DIRECT DEBIT(.*)\d{12}/
 		
 		NumberFormat cf = NumberFormat.getCurrencyInstance()
 		NumberFormat nf = NumberFormat.getNumberInstance()
@@ -135,10 +136,23 @@ class DataFileService {
 				descMatcher = suncorpDescription =~ bpayPattern
 				parsedDescription = descMatcher[0][1].trim()
 			}
+			else if (suncorpDescription.startsWith('DIRECT DEBIT')) {
+				descMatcher = suncorpDescription =~ ddPattern
+				parsedDescription = descMatcher[0][1].trim()
+			}
 			else if (suncorpDescription.startsWith('ATM WITHDRAWAL')) {
 				parsedDescription = suncorpDescription.trim()
 			}
+			else if (suncorpDescription.startsWith('INTERNET EXTERNAL TRANSFER')) {
+				parsedDescription = 'External Transfer'
+			}
 			else if (suncorpDescription.startsWith('INTERNET TRANSFER CREDIT')) {
+				return	//return from closure
+			}
+			else if (suncorpDescription.startsWith('INTERNET TRANSFER DEBIT')) {
+				return	//return from closure
+			}
+			else if (suncorpDescription.startsWith('CREDIT INTEREST')) {
 				return	//return from closure
 			}
 			else {
