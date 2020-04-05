@@ -9,7 +9,7 @@ class FinancialDBLoadApp {
 		println 'FinancialDBLoadApp started...'
 		println ''
 
-		if (args.size() == 1) {
+		if (args.size() > 0) {
 			Run run = Run.findByName(args[0])
 			println "Run parameter: $run" 
 			println ''

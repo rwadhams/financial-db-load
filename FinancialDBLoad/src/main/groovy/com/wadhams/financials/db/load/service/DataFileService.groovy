@@ -17,56 +17,59 @@ class DataFileService {
 	List<FinancialDTO> buildFinancialDTOList(File file) {
 		List<FinancialDTO> financialList = []
 
-		file.eachLine {line ->
-			//println line
-			def xml= new XmlSlurper().parseText(line)
+		def financials = new XmlSlurper().parse(file)
+		
+		def transactions = financials.data
+		
+		transactions.each {txn ->
+			//println txn
 			
 			FinancialDTO dto = new FinancialDTO()
 			
 			//transactionDate
-			Date d = sdf.parse(xml.dt.text())
+			Date d = sdf.parse(txn.dt.text())
 //			println d
 			dto.transactionDate = d
 			
 			//amount
-			BigDecimal bd = new BigDecimal(xml.amt.text())
+			BigDecimal bd = new BigDecimal(txn.amt.text())
 //			println bd
 			dto.amount = bd
 			
-			dto.payee = xml.payee.text().trim()
+			dto.payee = txn.payee.text().trim()
 			
-			dto.description = xml.desc.text().trim()
+			dto.description = txn.desc.text().trim()
 
 			//Asset type
-			Asset a = Asset.findByName(xml.asset.text())
+			Asset a = Asset.findByName(txn.asset.text())
 			dto.asset = a
 			
 			//Category type
-			Category c = Category.findByName(xml.cat.text())
+			Category c = Category.findByName(txn.cat.text())
 			dto.category = c
 			
 			//SubCategory type
-			SubCategory sc = SubCategory.findByName(xml.subcat.text())
+			SubCategory sc = SubCategory.findByName(txn.subcat.text())
 			dto.subCategory = sc
 			
 			//Duration
-			String start = xml.start.text()
-			String end = xml.end.text()
+			String start = txn.start.text()
+			String end = txn.end.text()
 			if (start && end) {
 				dto.startDate = sdf.parse(start)
 				dto.endDate = sdf.parse(end)
 			}
 			
 			//Reporting Group type (1)
-			ReportGrouping rg1 = ReportGrouping.findByName(xml.rg1.text())
+			ReportGrouping rg1 = ReportGrouping.findByName(txn.rg1.text())
 			dto.rg1 = rg1
 			
 			//Reporting Group type (2)
-			ReportGrouping rg2 = ReportGrouping.findByName(xml.rg2.text())
+			ReportGrouping rg2 = ReportGrouping.findByName(txn.rg2.text())
 			dto.rg2 = rg2
 			
 			//Reporting Group type (3)
-			ReportGrouping rg3 = ReportGrouping.findByName(xml.rg3.text())
+			ReportGrouping rg3 = ReportGrouping.findByName(txn.rg3.text())
 			dto.rg3 = rg3
 			
 			//println dto			

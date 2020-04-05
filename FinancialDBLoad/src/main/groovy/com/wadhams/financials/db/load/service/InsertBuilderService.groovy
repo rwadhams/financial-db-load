@@ -16,10 +16,9 @@ class InsertBuilderService {
 	def build() {
 		File fout = new File("out/sql-inserts.txt")
 		fout.withPrintWriter {pw ->
-			File baseDir = new File('C:/Mongo/Financial_DB_Data')
-			baseDir.eachFileMatch(~/.*\.txt/) {f ->
+			File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
+			baseDir.eachFileMatch(~/.*\.xml/) {f ->
 				println "${f.name}"
-				dataFileService.verify(f)
 				List<FinancialDTO> financialList = dataFileService.buildFinancialDTOList(f)
 				financialList.each {dto ->
 					println dto

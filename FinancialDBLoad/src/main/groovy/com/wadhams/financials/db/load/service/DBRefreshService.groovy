@@ -21,7 +21,7 @@ class DBRefreshService {
 		sql.execute sqlBuilderService.buildDeleteAll()
 			
 		File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
-		baseDir.eachFileMatch(~/.*\.txt/) {f ->
+		baseDir.eachFileMatch(~/.*\.xml/) {f ->
 			println "${f.name}"
 			List<FinancialDTO> financialList = dataFileService.buildFinancialDTOList(f)
 			financialList.each {dto ->
