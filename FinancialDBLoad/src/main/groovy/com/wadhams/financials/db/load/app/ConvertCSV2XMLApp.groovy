@@ -25,6 +25,7 @@ class ConvertCSV2XMLApp {
 			
 			File fout = new File("C:/Mongo/Financial_DB_CSV_Data/${f.name- '.csv' + '.xml'}")
 			PrintWriter pw = fout.newPrintWriter()
+			pw.print '<financials>'
 			
 			suncorpDTOList.each {dto ->
 				pw.print '<data>'
@@ -40,8 +41,9 @@ class ConvertCSV2XMLApp {
 				//description
 				pw.print "<desc>${dto.description}</desc>"
 				
-				pw.println '<asset></asset><cat></cat><subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
+				pw.print '<asset></asset><cat></cat><subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
 			}
+			pw.println '</financials>'
 			pw.close()
 			
 			println ''

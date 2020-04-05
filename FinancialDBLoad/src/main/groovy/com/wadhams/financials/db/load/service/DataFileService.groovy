@@ -100,6 +100,7 @@ class DataFileService {
 
 		file.eachLine {line ->
 			println line
+			line = line.replaceAll(/&/, '&amp;')
 			Matcher lineMatcher = line =~ linePattern
 			String regexDate = lineMatcher[0][1]
 			String regexDesc = lineMatcher[0][2]
