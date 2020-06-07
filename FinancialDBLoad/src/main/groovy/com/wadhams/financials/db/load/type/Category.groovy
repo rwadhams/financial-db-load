@@ -26,6 +26,8 @@ enum Category {
 	ElectricUtilities('ELECTRIC_UTILITIES','ELECTRIC_UTILITIES'),
 	Entertainment('ENTERTAINMENT','ENTERTAINMENT'),
 	Equipment('EQUIPMENT','EQUIPMENT'),
+	Fishing('FISHING','FISHING'),
+	Flights('FLIGHTS','FLIGHTS'),
 	Food('FOOD','FOOD'),
 	Fuel('FUEL','FUEL'),
 	Furniture('FURNITURE','FURNITURE'),
