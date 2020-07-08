@@ -35,6 +35,7 @@ enum Category {
 	Gifts('GIFTS','GIFTS'),
 	HouseInsurance('HOUSE_INSURANCE','HOUSE_INSURANCE'),
 	HouseMaintenance('HOUSE_MAINTENANCE','HOUSE_MAINTENANCE'),
+	HouseSale('HOUSE_SALE','HOUSE_SALE'),
 	HouseSupplies('HOUSE_SUPPLIES','HOUSE_SUPPLIES'),
 	HouseWares('HOUSEWARES','HOUSEWARES'),
 	Income('INCOME','INCOME'),
