@@ -38,7 +38,6 @@ enum Category {
 	HouseSale('HOUSE_SALE','HOUSE_SALE'),
 	HouseSupplies('HOUSE_SUPPLIES','HOUSE_SUPPLIES'),
 	HouseWares('HOUSEWARES','HOUSEWARES'),
-	Income('INCOME','INCOME'),
 	ITunes('ITUNES','ITUNES'),
 	Medical('MEDICAL','MEDICAL'),
 	RACQMembership('RACQ_MEMBERSHIP','RACQ_MEMBERSHIP'),
