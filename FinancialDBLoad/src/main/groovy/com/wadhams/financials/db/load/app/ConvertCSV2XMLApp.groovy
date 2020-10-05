@@ -36,12 +36,17 @@ class ConvertCSV2XMLApp {
 				//amount
 				pw.print "<amt>${dto.amount}</amt>"
 				
-				pw.print "<payee>${dto.description}</payee>"
+				pw.print "<payee>${dto.payee}</payee>"
 				
 				//description
 				pw.print "<desc>${dto.description}</desc>"
 				
-				pw.print '<asset></asset><cat></cat><subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
+				pw.print '<asset></asset>'
+				
+				//category
+				pw.print "<cat>${dto.category}</cat>"
+				
+				pw.print '<subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
 			}
 			pw.println '</financials>'
 			pw.close()

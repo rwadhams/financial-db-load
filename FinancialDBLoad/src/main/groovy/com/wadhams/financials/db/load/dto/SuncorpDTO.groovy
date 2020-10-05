@@ -5,6 +5,8 @@ import groovy.transform.ToString
 @ToString(includeNames=true)
 class SuncorpDTO {
 	String transactionDate
-	String description
 	BigDecimal amount
+	String payee
+	String description
+	String category
 }

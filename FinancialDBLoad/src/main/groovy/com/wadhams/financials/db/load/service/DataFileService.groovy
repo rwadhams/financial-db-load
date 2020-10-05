@@ -14,10 +14,10 @@ import com.wadhams.financials.db.load.type.SubCategory
 class DataFileService {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
 	
-	List<FinancialDTO> buildFinancialDTOList(File file) {
+	List<FinancialDTO> buildFinancialDTOList(File xmlFile) {
 		List<FinancialDTO> financialList = []
 
-		def financials = new XmlSlurper().parse(file)
+		def financials = new XmlSlurper().parse(xmlFile)
 		
 		def transactions = financials.data
 		
@@ -79,7 +79,7 @@ class DataFileService {
 		return financialList
 	}
 	
-	List<SuncorpDTO> buildSuncorpDTOList(File file) {
+	List<SuncorpDTO> buildSuncorpDTOList(File csvFile) {
 		Pattern linePattern = ~/"(.*?)","(.*?)","(.*?)","(.*?)"/
 		
 		Pattern visaPurchasePattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
@@ -98,7 +98,7 @@ class DataFileService {
 		
 		List<SuncorpDTO> suncorpList = []
 
-		file.eachLine {line ->
+		csvFile.eachLine {line ->
 			println line
 			line = line.replaceAll(/&/, '&amp;')
 			Matcher lineMatcher = line =~ linePattern
@@ -164,7 +164,7 @@ class DataFileService {
 				parsedDescription = suncorpDescription.trim()
 			}
 			//println parsedDescription
-			dto.description = parsedDescription
+			derivedValuesFromDescription(parsedDescription, dto)
 			
 			//println dto
 			//println ''			
@@ -172,5 +172,58 @@ class DataFileService {
 		}
 
 		return suncorpList
+	}
+	
+	def derivedValuesFromDescription(String parsedDescription, SuncorpDTO dto) {
+		if (parsedDescription.matches(~/COLES \d\d\d\d.*/)) {
+			dto.payee = 'COLES'
+			dto.description = 'Groceries'
+			dto.category = 'FOOD'
+		}
+		else if (parsedDescription.matches(~/WOOLWORTHS.*/)) {
+			dto.payee = 'WOOLWORTHS'
+			dto.description = 'Groceries'
+			dto.category = 'FOOD'
+		}
+		else if (parsedDescription.matches(~/KMART.*/)) {
+			dto.payee = 'KMART'
+			dto.description = 'Caravan wares'
+			dto.category = 'CARAVAN_EQUIPMENT'
+		}
+		else if (parsedDescription.matches(~/BUNNINGS.*/)) {
+			dto.payee = 'BUNNINGS'
+			dto.description = 'Caravan wares'
+			dto.category = 'CARAVAN_EQUIPMENT'
+		}
+		else if (parsedDescription.matches(~/DAN MURPHY.*/)) {
+			dto.payee = 'DAN MURPHYS'
+			dto.description = 'Beer &amp; Wine'
+			dto.category = 'ALCOHOL'
+		}
+		else if (parsedDescription.matches(~/1ST CHOICE.*/)) {
+			dto.payee = '1ST CHOICE LIQUOR'
+			dto.description = 'Beer &amp; Wine'
+			dto.category = 'ALCOHOL'
+		}
+		else if (parsedDescription.matches(~/COLES EXPRESS.*/)) {
+			dto.payee = 'COLES EXPRESS'
+			dto.description = 'Fill up'
+			dto.category = 'FUEL'
+		}
+		else if (parsedDescription.matches(~/BELONG.*/)) {
+			dto.payee = 'BELONG MOBILE'
+			dto.description = 'Cell phones'
+			dto.category = 'PHONE_PLAN'
+		}
+		else if (parsedDescription.matches(~/Telstra.*/)) {
+			dto.payee = 'TELSTRA'
+			dto.description = 'Wifi data sim'
+			dto.category = 'DATA_PLAN'
+		}
+		else {
+			dto.payee = 'N/A'
+			dto.description = parsedDescription
+			dto.category = ''
+		}
 	}
 }
