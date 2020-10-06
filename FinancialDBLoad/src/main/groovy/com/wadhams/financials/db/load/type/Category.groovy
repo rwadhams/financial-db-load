@@ -34,6 +34,7 @@ enum Category {
 	Furniture('FURNITURE','FURNITURE'),
 	GasUtilities('GAS_UTILITIES','GAS_UTILITIES'),
 	Gifts('GIFTS','GIFTS'),
+	HomeBrew('HOME_BREW','HOME_BREW'),
 	HouseWares('HOUSEWARES','HOUSEWARES'),
 	HouseInsurance('HOUSE_INSURANCE','HOUSE_INSURANCE'),
 	HouseMaintenance('HOUSE_MAINTENANCE','HOUSE_MAINTENANCE'),
