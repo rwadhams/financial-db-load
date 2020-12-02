@@ -82,12 +82,14 @@ class DataFileService {
 	List<SuncorpDTO> buildSuncorpDTOList(File csvFile) {
 		Pattern linePattern = ~/"(.*?)","(.*?)","(.*?)","(.*?)"/
 		
-		Pattern visaPurchasePattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
+		Pattern visaPurchasePattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*[A|U][U|S]D/	//ends in AUD or USD
+		//Pattern visaPurchasePattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
 		Pattern visaCreditPattern = ~/VISA CREDIT(.*)\d\d\/\d\d.*AUD/
 		Pattern wdlPattern  = ~/EFTPOS WDL(.*)AU/
 		Pattern depPattern  = ~/EFTPOS DEP(.*)AU/
 		Pattern bpayPattern = ~/BPAY DEBIT VIA INTERNET(.*)REFERENCE NUMBER.*/
 		Pattern ddPattern  = ~/DIRECT DEBIT(.*)\d{12}/
+		Pattern foreignPattern  = ~/FOREIGN CURRENCY CONVERSION FEE/
 		
 		NumberFormat cf = NumberFormat.getCurrencyInstance()
 		NumberFormat nf = NumberFormat.getNumberInstance()
@@ -149,6 +151,9 @@ class DataFileService {
 			}
 			else if (suncorpDescription.startsWith('INTERNET EXTERNAL TRANSFER')) {
 				parsedDescription = 'External Transfer'
+			}
+			else if (suncorpDescription.equals('FOREIGN CURRENCY CONVERSION FEE')) {
+				parsedDescription = 'Currency Conversion Fee'
 			}
 			else if (suncorpDescription.startsWith('INTERNET TRANSFER CREDIT')) {
 				return	//return from closure
