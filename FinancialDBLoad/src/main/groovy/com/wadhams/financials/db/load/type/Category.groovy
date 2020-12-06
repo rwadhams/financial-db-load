@@ -47,6 +47,7 @@ enum Category {
 	Parking('PARKING','PARKING'),
 	Pharmacy('PHARMACY','PHARMACY'),
 	PhonePlan('PHONE_PLAN','PHONE_PLAN'),
+	PhoneDataPlan('PHONE_AND_DATA_PLAN','PHONE_AND_DATA_PLAN'),
 	PreparedFood('PREPARED_FOOD','PREPARED_FOOD'),
 	Purchase('PURCHASE','PURCHASE'),
 	RACQMembership('RACQ_MEMBERSHIP','RACQ_MEMBERSHIP'),
