@@ -6,8 +6,6 @@ enum SubCategory {
 	Deposit('DEPOSIT','DEPOSIT'),			//PURCHASE
 	Flights('FLIGHTS','FLIGHTS'),			//PURCHASE
 	
-	Brewery('BREWERY','BREWERY'),			//ENTERTAINMENT
-	
 	Services('SERVICES','SERVICES'),		//Paid work and materials
 	
 	Unknown('Unknown','Unknown');

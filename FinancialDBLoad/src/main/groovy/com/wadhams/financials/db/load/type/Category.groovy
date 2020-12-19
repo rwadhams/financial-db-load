@@ -21,6 +21,7 @@ enum Category {
 	Cash('CASH','CASH'),
 	Clothing('CLOTHING','CLOTHING'),
 	DataPlan('DATA_PLAN','DATA_PLAN'),
+	Drinks('DRINKS','DRINKS'),
 	DriversLicenseRob('DRIVERS_LICENSE_ROB','DRIVERS_LICENSE_ROB'),
 	DriversLicenseMolly('DRIVERS_LICENSE_MOLLY','DRIVERS_LICENSE_MOLLY'),
 	ElectricUtilities('ELECTRIC_UTILITIES','ELECTRIC_UTILITIES'),
