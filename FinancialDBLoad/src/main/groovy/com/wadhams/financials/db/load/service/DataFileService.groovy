@@ -212,7 +212,7 @@ class DataFileService {
 		}
 		else if (parsedDescription.matches(~/COLES EXPRESS.*/)) {
 			dto.payee = 'COLES EXPRESS'
-			dto.description = 'Fill up'
+			dto.description = 'Fill-up'
 			dto.category = 'FUEL'
 		}
 		else if (parsedDescription.matches(~/BELONG.*/)) {
