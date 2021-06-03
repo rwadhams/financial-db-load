@@ -1,12 +1,13 @@
 package com.wadhams.financials.db.load.type
 
 enum Category {
-	FourWheelDriving('4WD','4WD'),
+	FourWheelDriving('4WD_EQUIPMENT','4WD_EQUIPMENT'),
 	Accomodation('ACCOMODATION','ACCOMODATION'),
 	Alcohol('ALCOHOL','ALCOHOL'),
 	CampingEquipment('CAMPING_EQUIPMENT','CAMPING_EQUIPMENT'),
 	CampingFees('CAMPING_FEES','CAMPING_FEES'),
 	CampingSupplies('CAMPING_SUPPLIES','CAMPING_SUPPLIES'),
+	CaravanAccessories('CARAVAN_ACCESSORIES','CARAVAN_ACCESSORIES'),
 	CaravanEquipment('CARAVAN_EQUIPMENT','CARAVAN_EQUIPMENT'),
 	CaravanInsurance('CARAVAN_INSURANCE','CARAVAN_INSURANCE'),
 	CaravanMaintenance('CARAVAN_MAINTENANCE','CARAVAN_MAINTENANCE'),
@@ -18,6 +19,7 @@ enum Category {
 	CarServicing('CAR_SERVICING','CAR_SERVICING'),
 	CarRego('CAR_REGISTRATION','CAR_REGISTRATION'),
 	CarSupplies('CAR_SUPPLIES','CAR_SUPPLIES'),
+	CarUpgrade('CAR_UPGRADE','CAR_UPGRADE'),
 	Cash('CASH','CASH'),
 	Clothing('CLOTHING','CLOTHING'),
 	DataPlan('DATA_PLAN','DATA_PLAN'),
