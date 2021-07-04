@@ -3,7 +3,9 @@ package com.wadhams.financials.db.load.type
 enum Category {
 	FourWheelDriving('4WD_EQUIPMENT','4WD_EQUIPMENT'),
 	Accomodation('ACCOMODATION','ACCOMODATION'),
+	AccountingFees('ACCOUNTING_FEES','ACCOUNTING_FEES'),
 	Alcohol('ALCOHOL','ALCOHOL'),
+	BankingFees('BANKING_FEES','BANKING_FEES'),
 	CampingEquipment('CAMPING_EQUIPMENT','CAMPING_EQUIPMENT'),
 	CampingFees('CAMPING_FEES','CAMPING_FEES'),
 	CampingSupplies('CAMPING_SUPPLIES','CAMPING_SUPPLIES'),
@@ -48,6 +50,7 @@ enum Category {
 	Misc('MISC','MISC'),
 	Office('OFFICE','OFFICE'),
 	Parking('PARKING','PARKING'),
+	PersonalGrooming('PERSONAL_GROOMING','PERSONAL_GROOMING'),
 	Pharmacy('PHARMACY','PHARMACY'),
 	PhonePlan('PHONE_PLAN','PHONE_PLAN'),
 	PhoneDataPlan('PHONE_AND_DATA_PLAN','PHONE_AND_DATA_PLAN'),
