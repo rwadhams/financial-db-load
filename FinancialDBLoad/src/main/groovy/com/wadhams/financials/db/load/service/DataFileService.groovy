@@ -88,7 +88,8 @@ class DataFileService {
 		Pattern wdlPattern  = ~/EFTPOS WDL(.*)AU/
 		Pattern depPattern  = ~/EFTPOS DEP(.*)AU/
 		Pattern bpayPattern = ~/BPAY DEBIT VIA INTERNET(.*)REFERENCE NUMBER.*/
-		Pattern ddPattern  = ~/DIRECT DEBIT(.*)\d{12}/
+		//Pattern ddPattern  = ~/DIRECT DEBIT(.*)\d{12}/	//DIRECT DEBIT    ORIGIN GAS 052606044487
+		Pattern ddPattern  = ~/DIRECT DEBIT(.*)/
 		Pattern foreignPattern  = ~/FOREIGN CURRENCY CONVERSION FEE/
 		
 		NumberFormat cf = NumberFormat.getCurrencyInstance()
@@ -215,15 +216,15 @@ class DataFileService {
 			dto.description = 'Fill-up'
 			dto.category = 'FUEL'
 		}
-		else if (parsedDescription.matches(~/BELONG.*/)) {
+		else if (parsedDescription.matches(~/Belong.*/)) {
 			dto.payee = 'BELONG MOBILE'
-			dto.description = 'Cell phones'
-			dto.category = 'PHONE_PLAN'
+			dto.description = 'Cell phone'
+			dto.category = 'PHONE_PLAN_ROB'
 		}
 		else if (parsedDescription.matches(~/Telstra.*/)) {
 			dto.payee = 'TELSTRA'
-			dto.description = 'Wifi data sim'
-			dto.category = 'DATA_PLAN'
+			dto.description = 'Wifi data sim | Cell phone'
+			dto.category = 'DATA_PLAN | PHONE_PLAN_MOLLY'
 		}
 		else {
 			dto.payee = 'N/A'
