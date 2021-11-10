@@ -1,13 +1,6 @@
 package com.wadhams.financials.db.load.type
 
 enum SubCategory {
-	Payment('PAYMENT','PAYMENT'),			//PURCHASE
-	StampDuty('STAMP_DUTY','STAMP_DUTY'),	//PURCHASE
-	Deposit('DEPOSIT','DEPOSIT'),			//PURCHASE
-	Flights('FLIGHTS','FLIGHTS'),			//PURCHASE
-	
-	Services('SERVICES','SERVICES'),		//Paid work and materials
-	
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<SubCategory> allEnums = EnumSet.allOf(SubCategory.class)

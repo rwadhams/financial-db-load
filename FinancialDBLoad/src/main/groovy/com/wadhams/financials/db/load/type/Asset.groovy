@@ -4,7 +4,6 @@ enum Asset {
 	CampHill('CAMP_HILL','CAMP_HILL'),
 	Caravan('CARAVAN','CARAVAN'),
 	Vehicle('VEHICLE','VEHICLE'),
-	Family('FAMILY','FAMILY'),
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<Asset> allEnums = EnumSet.allOf(Asset.class)
