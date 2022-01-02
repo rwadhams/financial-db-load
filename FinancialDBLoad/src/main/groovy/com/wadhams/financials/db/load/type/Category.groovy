@@ -33,7 +33,6 @@ enum Category {
 	Entertainment('ENTERTAINMENT','ENTERTAINMENT'),
 	Ferry('FERRY','FERRY'),
 	Fishing('FISHING','FISHING'),
-	Flights('FLIGHTS','FLIGHTS'),
 	Food('FOOD','FOOD'),
 	Fuel('FUEL','FUEL'),
 	Furniture('FURNITURE','FURNITURE'),
@@ -71,6 +70,7 @@ enum Category {
 	Tools('TOOLS','TOOLS'),
 	Transit('TRANSIT','TRANSIT'),
 	TransmissionServicing('TRANSMISSION_SERVICING','TRANSMISSION_SERVICING'),
+	Travel('TRAVEL','TRAVEL'),
 	TravelPublication('TRAVEL_PUBLICATION','TRAVEL_PUBLICATION'),
 	WaterUtilities('WATER_UTILITIES','WATER_UTILITIES'),
 	Unknown('Unknown','Unknown');
