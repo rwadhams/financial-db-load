@@ -1,11 +1,5 @@
 package com.wadhams.financials.db.load.service
 
-import java.text.SimpleDateFormat
-
-import com.wadhams.financials.db.load.dto.FinancialDTO
-import com.wadhams.financials.db.load.type.Asset
-import com.wadhams.financials.db.load.type.Category
-import com.wadhams.financials.db.load.type.SubCategory
 import groovy.sql.Sql
 
 class DataValueReportingService {

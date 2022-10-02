@@ -1,9 +1,11 @@
 package com.wadhams.financials.db.load.service
 
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
 import com.wadhams.financials.db.load.dto.FinancialDTO
 import com.wadhams.financials.db.load.dto.SuncorpDTO
 import com.wadhams.financials.db.load.type.Asset
@@ -12,7 +14,7 @@ import com.wadhams.financials.db.load.type.ReportGrouping
 import com.wadhams.financials.db.load.type.SubCategory
 
 class DataFileService {
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy")
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern('dd/MM/yyyy')
 	
 	List<FinancialDTO> buildFinancialDTOList(File xmlFile) {
 		List<FinancialDTO> financialList = []
@@ -27,7 +29,7 @@ class DataFileService {
 			FinancialDTO dto = new FinancialDTO()
 			
 			//transactionDate
-			Date d = sdf.parse(txn.dt.text())
+			LocalDate d = LocalDate.parse(txn.dt.text(), dtf)
 //			println d
 			dto.transactionDate = d
 			
@@ -56,8 +58,8 @@ class DataFileService {
 			String start = txn.start.text()
 			String end = txn.end.text()
 			if (start && end) {
-				dto.startDate = sdf.parse(start)
-				dto.endDate = sdf.parse(end)
+				dto.startDate = LocalDate.parse(start, dtf)
+				dto.endDate = LocalDate.parse(end, dtf)
 			}
 			
 			//Reporting Group type (1)

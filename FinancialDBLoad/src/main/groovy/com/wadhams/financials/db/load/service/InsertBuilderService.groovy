@@ -1,15 +1,8 @@
 package com.wadhams.financials.db.load.service
 
-import java.text.SimpleDateFormat
-
 import com.wadhams.financials.db.load.dto.FinancialDTO
-import com.wadhams.financials.db.load.type.Asset
-import com.wadhams.financials.db.load.type.Category
-import com.wadhams.financials.db.load.type.SubCategory
 
 class InsertBuilderService {
-	SimpleDateFormat db2date = new SimpleDateFormat("yyyy-MM-dd")
-	 
 	DataFileService dataFileService = new DataFileService()
 	SQLBuilderService sqlBuilderService = new SQLBuilderService()
 	

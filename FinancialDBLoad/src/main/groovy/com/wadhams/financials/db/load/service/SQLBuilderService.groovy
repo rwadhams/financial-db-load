@@ -1,22 +1,22 @@
 package com.wadhams.financials.db.load.service
 
-import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 
 import com.wadhams.financials.db.load.dto.FinancialDTO
 import com.wadhams.financials.db.load.type.Asset
 import com.wadhams.financials.db.load.type.Category
-import com.wadhams.financials.db.load.type.SubCategory
 import com.wadhams.financials.db.load.type.ReportGrouping
+import com.wadhams.financials.db.load.type.SubCategory
 
 class SQLBuilderService {
-	SimpleDateFormat db2date = new SimpleDateFormat("yyyy-MM-dd")
-	 
+	DateTimeFormatter h2dtf = DateTimeFormatter.ofPattern('yyyy-MM-dd')
+	
 	String buildInsert(FinancialDTO dto) {
 		StringBuilder sb = new StringBuilder()
 		sb.append('INSERT INTO FINANCIAL(TRANSACTION_DT, AMOUNT, PAYEE, DESCRIPTION, ASSET, CATEGORY, SUB_CATEGORY, START_DT, END_DT, RPT_GRP_1, RPT_GRP_2, RPT_GRP_3) ')
 		sb.append('VALUES(')
 		
-		sb.append("'${db2date.format(dto.transactionDate)}', ")
+		sb.append("'${h2dtf.format(dto.transactionDate)}', ")
 
 		sb.append("${dto.amount.toString()}, ")
 		
@@ -58,7 +58,7 @@ class SQLBuilderService {
 				
 		//startDate
 		if (dto.startDate) {
-			sb.append("'${db2date.format(dto.startDate)}', ")
+			sb.append("'${h2dtf.format(dto.startDate)}', ")
 		}
 		else {
 			sb.append('null, ')
@@ -66,7 +66,7 @@ class SQLBuilderService {
 
 		//endDate
 		if (dto.endDate) {
-			sb.append("'${db2date.format(dto.endDate)}', ")
+			sb.append("'${h2dtf.format(dto.endDate)}', ")
 		}
 		else {
 			sb.append('null, ')

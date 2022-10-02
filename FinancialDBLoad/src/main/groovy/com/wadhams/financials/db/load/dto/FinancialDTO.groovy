@@ -6,10 +6,11 @@ import com.wadhams.financials.db.load.type.ReportGrouping
 import com.wadhams.financials.db.load.type.SubCategory
 
 import groovy.transform.ToString
+import java.time.LocalDate
 
 @ToString(includeNames=true)
 class FinancialDTO {
-	Date transactionDate
+	LocalDate transactionDate
 	BigDecimal amount
 	String payee
 	String description
@@ -17,8 +18,8 @@ class FinancialDTO {
 	Asset asset
 	Category category
 	SubCategory subCategory
-	Date startDate
-	Date endDate
+	LocalDate startDate
+	LocalDate endDate
 	ReportGrouping rg1
 	ReportGrouping rg2
 	ReportGrouping rg3
