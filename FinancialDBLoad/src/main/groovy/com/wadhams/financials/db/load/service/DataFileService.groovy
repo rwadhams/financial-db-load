@@ -228,6 +228,11 @@ class DataFileService {
 			dto.description = 'Wifi data sim | Cell phone'
 			dto.category = 'DATA_PLAN | PHONE_PLAN_MOLLY'
 		}
+		else if (parsedDescription.matches(~/APPLE.*/)) {
+			dto.payee = 'APPLE'
+			dto.description = 'Cloud Storage'
+			dto.category = 'CLOUD_STORAGE'
+		}
 		else {
 			dto.payee = 'N/A'
 			dto.description = parsedDescription

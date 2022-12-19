@@ -28,6 +28,7 @@ enum Category {
 	Clothing('CLOTHING','CLOTHING'),
 	CloudStorage('CLOUD_STORAGE','CLOUD_STORAGE'),
 	DataPlan('DATA_PLAN','DATA_PLAN'),
+	Domestic_Travel('DOMESTIC_TRAVEL','DOMESTIC_TRAVEL'),
 	Drinks('DRINKS','DRINKS'),
 	DriversLicenseMolly('DRIVERS_LICENSE_MOLLY','DRIVERS_LICENSE_MOLLY'),
 	DriversLicenseRob('DRIVERS_LICENSE_ROB','DRIVERS_LICENSE_ROB'),

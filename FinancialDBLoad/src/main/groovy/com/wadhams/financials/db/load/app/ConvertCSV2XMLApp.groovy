@@ -46,7 +46,12 @@ class ConvertCSV2XMLApp {
 				//category
 				pw.print "<cat>${dto.category}</cat>"
 				
-				pw.print '<subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3></rg3></data>'
+				//large transaction amounts annotate RG3
+				String rg3 = ''
+				if (dto.amount > 100) {
+					rg3 = '$$$'
+				}
+				pw.print "<subcat></subcat><start></start><end></end><rg1></rg1><rg2></rg2><rg3>$rg3</rg3></data>"
 			}
 			pw.println '</financials>'
 			pw.close()
