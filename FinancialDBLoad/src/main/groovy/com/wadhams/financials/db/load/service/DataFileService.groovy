@@ -88,7 +88,7 @@ class DataFileService {
 		//Pattern visaPurchasePattern = ~/VISA PURCHASE(.*)\d\d\/\d\d.*AUD/
 		Pattern visaCreditPattern = ~/VISA CREDIT(.*)\d\d\/\d\d.*AUD/
 		Pattern wdlPattern  = ~/EFTPOS WDL(.*)AU/
-		Pattern depPattern  = ~/EFTPOS DEP(.*)AU/
+		Pattern depPattern  = ~/EFTPOS DEP(.*)A?U?/
 		Pattern bpayPattern = ~/BPAY DEBIT VIA INTERNET(.*)REFERENCE NUMBER.*/
 		//Pattern ddPattern  = ~/DIRECT DEBIT(.*)\d{12}/	//DIRECT DEBIT    ORIGIN GAS 052606044487
 		Pattern ddPattern  = ~/DIRECT DEBIT(.*)/
