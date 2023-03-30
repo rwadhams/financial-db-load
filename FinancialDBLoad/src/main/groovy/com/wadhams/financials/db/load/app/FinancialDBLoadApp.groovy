@@ -4,6 +4,7 @@ import com.wadhams.financials.db.load.dto.FinancialDTO
 import com.wadhams.financials.db.load.service.DBRefreshService
 import com.wadhams.financials.db.load.service.InsertBuilderService
 import com.wadhams.financials.db.load.type.Run
+
 class FinancialDBLoadApp {
 	static main(args) {
 		println 'FinancialDBLoadApp started...'
