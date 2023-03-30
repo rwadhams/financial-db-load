@@ -77,6 +77,8 @@ enum Category {
 	TransmissionServicing('TRANSMISSION_SERVICING','TRANSMISSION_SERVICING'),
 	TravelPublication('TRAVEL_PUBLICATION','TRAVEL_PUBLICATION'),
 	WaterUtilities('WATER_UTILITIES','WATER_UTILITIES'),
+	
+	Invalid('Invalid','Invalid'),
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<Category> allEnums = EnumSet.allOf(Category.class)
@@ -103,9 +105,9 @@ enum Category {
 		}
 		
 		println ''
-		println "ZZZZ Unknown category text: $text"
+		println "ZZZZ Invalid category text: $text"
 		println ''
-		return Category.Unknown
+		return Category.Invalid
 	}
 
 	public String getName() {
@@ -113,7 +115,7 @@ enum Category {
 	}
 
 	public String getDbValue() {
-		return dbValue;
+		return dbValue
 	}
 
 }

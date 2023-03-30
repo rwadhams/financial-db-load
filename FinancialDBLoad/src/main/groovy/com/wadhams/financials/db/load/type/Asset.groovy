@@ -4,6 +4,8 @@ enum Asset {
 	CampHill('CAMP_HILL','CAMP_HILL'),
 	Caravan('CARAVAN','CARAVAN'),
 	Vehicle('VEHICLE','VEHICLE'),
+	
+	Invalid('Invalid','Invalid'),
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<Asset> allEnums = EnumSet.allOf(Asset.class)
@@ -29,8 +31,10 @@ enum Asset {
 			return Asset.Unknown
 		}
 		
-		println "Unknown asset text: $text"
-		return Asset.Unknown
+		println ''
+		println "ZZZZ Invalid asset text: $text"
+		println ''
+		return Asset.Invalid
 	}
 
 	public String getName() {
@@ -38,7 +42,7 @@ enum Asset {
 	}
 
 	public String getDbValue() {
-		return dbValue;
+		return dbValue
 	}
 
 }

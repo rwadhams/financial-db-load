@@ -1,6 +1,7 @@
 package com.wadhams.financials.db.load.type
 
 enum SubCategory {
+	Invalid('Invalid','Invalid'),
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<SubCategory> allEnums = EnumSet.allOf(SubCategory.class)
@@ -27,9 +28,9 @@ enum SubCategory {
 		}
 		
 		println ''
-		println "ZZZZ Unknown sub-category text: $text"
+		println "ZZZZ Invalid sub-category text: $text"
 		println ''
-		return SubCategory.Unknown
+		return SubCategory.Invalid
 	}
 
 	public String getName() {
@@ -37,7 +38,7 @@ enum SubCategory {
 	}
 
 	public String getDbValue() {
-		return dbValue;
+		return dbValue
 	}
 
 }

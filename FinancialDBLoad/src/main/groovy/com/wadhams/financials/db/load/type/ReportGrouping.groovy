@@ -8,6 +8,7 @@ enum ReportGrouping {
 	
 	CampHillReno('CAMP_HILL_RENO','CAMP_HILL_RENO'),	//grouping for specific expenses
 	
+	Invalid('Invalid','Invalid'),
 	Unknown('Unknown','Unknown');
 	
 	private static EnumSet<ReportGrouping> allEnums = EnumSet.allOf(ReportGrouping.class)
@@ -33,8 +34,8 @@ enum ReportGrouping {
 			return ReportGrouping.Unknown
 		}
 		
-		println "Unknown reporting group text: $text"
-		return ReportGrouping.Unknown
+		println "ZZZZ Invalid reporting group text: $text"
+		return ReportGrouping.Invalid
 	}
 
 	public String getName() {
@@ -42,7 +43,7 @@ enum ReportGrouping {
 	}
 
 	public String getDbValue() {
-		return dbValue;
+		return dbValue
 	}
 
 }
