@@ -2,7 +2,7 @@ package com.wadhams.financials.db.load.service
 
 import java.time.format.DateTimeFormatter
 
-import com.wadhams.financials.db.load.dto.FinancialDTO
+import com.wadhams.financials.db.common.dto.FinancialDTO
 import com.wadhams.financials.db.common.type.Asset
 import com.wadhams.financials.db.common.type.Category
 import com.wadhams.financials.db.common.type.ReportGrouping

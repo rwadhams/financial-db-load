@@ -1,6 +1,6 @@
 package com.wadhams.financials.db.load.service
 
-import com.wadhams.financials.db.load.dto.FinancialDTO
+import com.wadhams.financials.db.common.dto.FinancialDTO
 
 import groovy.sql.Sql
 

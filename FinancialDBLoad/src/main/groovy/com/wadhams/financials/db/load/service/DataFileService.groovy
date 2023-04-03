@@ -1,17 +1,14 @@
 package com.wadhams.financials.db.load.service
 
-import java.text.NumberFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
-import com.wadhams.financials.db.load.dto.FilenameFinancialData
-import com.wadhams.financials.db.load.dto.FinancialDTO
+import com.wadhams.financials.db.common.dto.FinancialDTO
 import com.wadhams.financials.db.common.type.Asset
 import com.wadhams.financials.db.common.type.Category
 import com.wadhams.financials.db.common.type.ReportGrouping
 import com.wadhams.financials.db.common.type.SubCategory
+import com.wadhams.financials.db.load.dto.FilenameFinancialData
 
 class DataFileService {
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern('dd/MM/yyyy')
