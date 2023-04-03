@@ -1,5 +1,6 @@
 package com.wadhams.financials.db.load.app
 
+import com.wadhams.financials.db.load.controller.FinancialDBLoadController
 import com.wadhams.financials.db.load.dto.FinancialDTO
 import com.wadhams.financials.db.load.service.DBRefreshService
 import com.wadhams.financials.db.load.service.InsertBuilderService
@@ -14,13 +15,9 @@ class FinancialDBLoadApp {
 			Run run = Run.findByName(args[0])
 			println "Run parameter: $run" 
 			println ''
-			if (run == Run.DML) {
-				InsertBuilderService service = new InsertBuilderService()
-				service.build()
-			}
-			else if (run == Run.Refresh) {
-				DBRefreshService service = new DBRefreshService()
-				service.refresh()
+			if (run == Run.Refresh || run == Run.DML) {
+				FinancialDBLoadController controller = new FinancialDBLoadController()
+				controller.execute(run)
 			}
 			else {
 				println 'Unknown parameter. Application did not run.'

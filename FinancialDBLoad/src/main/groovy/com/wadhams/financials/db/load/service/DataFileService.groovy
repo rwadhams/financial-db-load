@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
+import com.wadhams.financials.db.load.dto.FilenameFinancialData
 import com.wadhams.financials.db.load.dto.FinancialDTO
 import com.wadhams.financials.db.load.type.Asset
 import com.wadhams.financials.db.load.type.Category
@@ -15,6 +16,21 @@ import com.wadhams.financials.db.load.type.SubCategory
 class DataFileService {
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern('dd/MM/yyyy')
 	
+	List<FilenameFinancialData> buildFilenameFinancialDataList() {
+		List<FilenameFinancialData> fnfdList = []
+		
+		File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
+		baseDir.eachFileMatch(~/.*\.xml/) {f ->
+			FilenameFinancialData fnfd = new FilenameFinancialData()
+			fnfd.filename = f.name
+			//println "${f.name}"
+			fnfd.dtoList = buildFinancialDTOList(f)
+			fnfdList << fnfd
+		}
+
+		return fnfdList
+	}
+
 	List<FinancialDTO> buildFinancialDTOList(File xmlFile) {
 		List<FinancialDTO> financialList = []
 
