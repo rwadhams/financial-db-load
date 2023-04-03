@@ -3,10 +3,10 @@ package com.wadhams.financials.db.load.service
 import java.time.format.DateTimeFormatter
 
 import com.wadhams.financials.db.load.dto.FinancialDTO
-import com.wadhams.financials.db.load.type.Asset
-import com.wadhams.financials.db.load.type.Category
-import com.wadhams.financials.db.load.type.ReportGrouping
-import com.wadhams.financials.db.load.type.SubCategory
+import com.wadhams.financials.db.common.type.Asset
+import com.wadhams.financials.db.common.type.Category
+import com.wadhams.financials.db.common.type.ReportGrouping
+import com.wadhams.financials.db.common.type.SubCategory
 
 class SQLBuilderService {
 	DateTimeFormatter h2dtf = DateTimeFormatter.ofPattern('yyyy-MM-dd')

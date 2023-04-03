@@ -1,9 +1,9 @@
 package com.wadhams.financials.db.load.dto
 
-import com.wadhams.financials.db.load.type.Asset
-import com.wadhams.financials.db.load.type.Category
-import com.wadhams.financials.db.load.type.ReportGrouping
-import com.wadhams.financials.db.load.type.SubCategory
+import com.wadhams.financials.db.common.type.Asset
+import com.wadhams.financials.db.common.type.Category
+import com.wadhams.financials.db.common.type.ReportGrouping
+import com.wadhams.financials.db.common.type.SubCategory
 
 import groovy.transform.ToString
 import java.time.LocalDate
