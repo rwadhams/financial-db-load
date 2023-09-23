@@ -16,7 +16,9 @@ class DataFileService {
 	List<FilenameFinancialData> buildFilenameFinancialDataList() {
 		List<FilenameFinancialData> fnfdList = []
 		
-		File baseDir = new File('C:/Mongo/Financial_DB_XML_Data')
+		String userDir = System.properties['user.dir']
+		
+		File baseDir = new File("${userDir}/data")
 		baseDir.eachFileMatch(~/.*\.xml/) {f ->
 			FilenameFinancialData fnfd = new FilenameFinancialData()
 			fnfd.filename = f.name
