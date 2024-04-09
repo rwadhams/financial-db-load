@@ -27,6 +27,9 @@ dependencies {
 	testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 }
 
+sourceCompatibility=18
+targetCompatibility=18
+
 application {
 	// Define the main class for the application.
 	mainClassName = 'com.wadhams.financials.db.load.app.FinancialDBLoadApp'
